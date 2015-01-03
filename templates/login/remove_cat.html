@@ -1,0 +1,28 @@
+{% extends 'login/base.html' %}
+
+    {% block script_block %}
+        function onDropDownChange(dropdown){
+          var selected_value = dropdown.options[dropdown.selectedIndex].value;
+          document.getElementById("cat").value = selected_value;
+        }
+    {% endblock %}
+    
+  {% block body_block %}
+        <h1>Remove Category</h1>
+        <form id='cat_form' method = 'POST' action='/login/remove_cat/'>
+          {% csrf_token %}
+        Category
+         <select name="Category" onChange = "onDropDownChange(this);">
+              <option value="----">--Select--</option>
+              {% for category in categories %}
+              <option value="{{category.name}}">{{category.name}}</option>
+              {% endfor %}
+         </select>
+         <input type="hidden" id="cat" name="category" value=""/>
+         <br/>
+         <br/>
+         <input type ="submit" value="remove category"/>
+       </form>
+  {% endblock %}
+
+
