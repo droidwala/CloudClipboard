@@ -1,0 +1,1 @@
+This is simple login system designed using Django Python
